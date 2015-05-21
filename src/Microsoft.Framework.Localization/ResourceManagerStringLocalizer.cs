@@ -185,10 +185,10 @@ namespace Microsoft.Framework.Localization
 
             var cacheKey = $"assembly={_resourceAssemblyWrapper.FullName};resourceStreamName={resourceStreamName}";
 
-            var cultureResourceNames = _resourceNamesCache.GetOrAdd(cacheKey, key =>
+            var cultureResourceNames = _resourceNamesCache.GetOrAdd(cacheKey, _ =>
             {
                 var names = new List<string>();
-                using (var cultureResourceStream = _resourceAssemblyWrapper.GetManifestResourceStream(key))
+                using (var cultureResourceStream = _resourceAssemblyWrapper.GetManifestResourceStream(resourceStreamName))
                 using (var resources = new ResourceReader(cultureResourceStream))
                 {
                     foreach (DictionaryEntry entry in resources)
