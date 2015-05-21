@@ -35,6 +35,7 @@ namespace Microsoft.Framework.Localization
             _localizer[name, arguments];
 
         /// <inheritdoc />
-        public IEnumerable<LocalizedString> GetAllStrings() => _localizer.GetAllStrings();
+        public IEnumerable<LocalizedString> GetAllStrings(bool includeAncestorCultures) =>
+            _localizer.GetAllStrings(includeAncestorCultures);
     }
 }

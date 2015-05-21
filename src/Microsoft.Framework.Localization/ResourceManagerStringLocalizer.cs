@@ -92,20 +92,21 @@ namespace Microsoft.Framework.Localization
                     culture);
         }
 
-        /// <summary>
-        /// Returns all strings in the current culture.
-        /// </summary>
-        /// <returns>The strings.</returns>
-        public virtual IEnumerable<LocalizedString> GetAllStrings() => GetAllStrings(CultureInfo.CurrentUICulture);
+        /// <inheritdoc />
+        public virtual IEnumerable<LocalizedString> GetAllStrings(bool includeAncestorCultures) =>
+            GetAllStrings(includeAncestorCultures, CultureInfo.CurrentUICulture);
 
         /// <summary>
         /// Returns all strings in the specified culture.
         /// </summary>
+        /// <param name="includeAncestorCultures"></param>
         /// <param name="culture">The <see cref="CultureInfo"/> to get strings for.</param>
         /// <returns>The strings.</returns>
-        protected IEnumerable<LocalizedString> GetAllStrings([NotNull] CultureInfo culture)
+        protected IEnumerable<LocalizedString> GetAllStrings(bool includeAncestorCultures, [NotNull] CultureInfo culture)
         {
-            var resourceNames = GetResourceNamesFromCultureHierarchy(culture);
+            var resourceNames = includeAncestorCultures
+                ? GetResourceNamesFromCultureHierarchy(culture)
+                : GetResourceNamesForCulture(culture);
 
             foreach (var name in resourceNames)
             {

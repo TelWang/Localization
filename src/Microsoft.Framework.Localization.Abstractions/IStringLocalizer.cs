@@ -29,8 +29,12 @@ namespace Microsoft.Framework.Localization
         /// <summary>
         /// Gets all string resources.
         /// </summary>
+        /// <param name="includeAncestorCultures">
+        /// A <see cref="System.Boolean"/> indicating whether to include
+        /// strings from ancestor cultures.
+        /// </param>
         /// <returns>The strings.</returns>
-        IEnumerable<LocalizedString> GetAllStrings();
+        IEnumerable<LocalizedString> GetAllStrings(bool includeAncestorCultures);
 
         /// <summary>
         /// Creates a new <see cref="ResourceManagerStringLocalizer"/> for a specific <see cref="CultureInfo"/>.

@@ -70,6 +70,7 @@ namespace Microsoft.Framework.Localization
         }
 
         /// <inheritdoc />
-        public override IEnumerable<LocalizedString> GetAllStrings() => GetAllStrings(_culture);
+        public override IEnumerable<LocalizedString> GetAllStrings(bool includeAncestorCultures) =>
+            GetAllStrings(includeAncestorCultures, _culture);
     }
 }
